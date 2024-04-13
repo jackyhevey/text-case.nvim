@@ -160,7 +160,12 @@ function M.to_title_case(str)
     end
     return first:upper() .. rest:lower()
   end)
-  return result
+  local function capitalizeFirstLetter(strings)
+    local firstLetter = strings:sub(1, 1):upper()
+    local restOfString = strings:sub(2)
+    return firstLetter .. restOfString
+  end
+  return capitalizeFirstLetter(result)
 end
 
 function M.to_snake_case(str)

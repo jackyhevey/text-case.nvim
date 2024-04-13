@@ -154,7 +154,7 @@ function M.to_title_case(str)
       end
       return false
     end
-    if inTable(word, not_textcase) then
+    if inTable(word:lower(), not_textcase) then
       return first:lower() .. rest:lower()
     end
     return first:upper() .. rest:lower()

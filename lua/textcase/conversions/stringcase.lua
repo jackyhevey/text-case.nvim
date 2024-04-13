@@ -116,6 +116,10 @@ function M.to_title_case(str)
   -- local parts = vim.split(M.to_dash_case(str), "-")
   -- return table.concat(utils.map(parts, toTitle), " ")
   local result = str:gsub("(%a)([%w_']*)", function(first, rest)
+    local word = first .. rest
+    if word:upper() == "IN" then
+      return first:lower() .. rest:lower()
+    end
     return first:upper() .. rest:lower()
   end)
   return result

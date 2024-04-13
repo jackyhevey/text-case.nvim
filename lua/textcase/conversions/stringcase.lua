@@ -113,8 +113,12 @@ function M.to_upper_case(str)
 end
 
 function M.to_title_case(str)
-  local parts = vim.split(M.to_dash_case(str), "-")
-  return table.concat(utils.map(parts, toTitle), " ")
+  -- local parts = vim.split(M.to_dash_case(str), "-")
+  -- return table.concat(utils.map(parts, toTitle), " ")
+  local result = str:gsub("(%a)([%w_']*)", function(first, rest)
+    return first:upper() .. rest:lower()
+  end)
+  return result
 end
 
 function M.to_snake_case(str)

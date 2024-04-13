@@ -116,8 +116,17 @@ function M.to_title_case(str)
   -- local parts = vim.split(M.to_dash_case(str), "-")
   -- return table.concat(utils.map(parts, toTitle), " ")
   local result = str:gsub("(%a)([%w_']*)", function(first, rest)
+    local not_textcase = { "in", "of", "at", "on", "a", "an" }
     local word = first .. rest
-    if word:upper() == "IN" then
+    local function inTable(value, tbl)
+      for _, v in ipairs(tbl) do
+        if v == value then
+          return true
+        end
+      end
+      return false
+    end
+    if inTable(word, not_textcase) then
       return first:lower() .. rest:lower()
     end
     return first:upper() .. rest:lower()
